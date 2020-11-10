@@ -69,32 +69,41 @@ class Item extends Component {
     }
     
     checkListChange = (key,index) =>{
-        console.log('find key', key)
-        console.log('find index', index)
-        const portugalCheck = this.state.portugal;
+      const portugalCheck = this.state.portugal;
         const nicaraguaCheck = this.state.nicaragua;
         const marshall_islandsCheck = this.state.marshall_islands;
         portugalCheck.map(list =>{
-            if(list.id === key){
+            if (list.id === key && list.check === false){
                 list.check = true;
+            } else{
+                if (list.id === key){
+                    list.check = false;
+                }
             }
         })
-        console.log('find some data', portugalCheck[index].check)
 
         this.setState({
             portugal: portugalCheck
         });
         nicaraguaCheck.map(list =>{
-            if(list.id === key){
+            if (list.id === key && list.check === false) {
                 list.check = true;
+            } else {
+                if (list.id === key) {
+                    list.check = false;
+                }
             }
         })
         this.setState({
             nicaragua: nicaraguaCheck
         });
         marshall_islandsCheck.map(list =>{
-            if(list.id === key){
+            if (list.id === key && list.check === false) {
                 list.check = true;
+            } else {
+                if (list.id === key) {
+                    list.check = false;
+                }
             }
         })
         this.setState({
@@ -176,7 +185,8 @@ class Item extends Component {
                                                     <Input addon type="checkbox" 
                                                     id={item.id} 
                                                     checked={item.check}
-                                                    onChange={this.checkListChange.bind(this,item.id,index)} aria-label="Checkbox for following text input" />
+                                                    onChange={this.checkListChange.bind(this,item.id,index)} 
+                                                    aria-label="Checkbox for following text input" />
                                                 </InputGroupText>
                                             </InputGroupAddon>
                                             <Input className="border-0" value={item.text} />
